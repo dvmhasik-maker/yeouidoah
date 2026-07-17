@@ -1,0 +1,193 @@
+---
+import { NAV_ITEMS, CLINIC } from "../data/nav";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container top-row">
+    <a href="/" class="logo">
+      <img src="/logo-full-navy.png" alt={`${CLINIC.name} ${CLINIC.nameEn}`} class="logo__img" />
+    </a>
+
+    <div class="top-row__right">
+      <a class="tel" href={`tel:${CLINIC.phone}`}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.8c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z" fill="currentColor"/>
+        </svg>
+        <span class="tel__text">{CLINIC.phone}</span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="site-nav" id="site-nav">
+    <ul class="container nav-list">
+      {NAV_ITEMS.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={["nav-link", { "is-active": currentPath.startsWith(item.href) }]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById("nav-toggle");
+  const nav = document.getElementById("site-nav");
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = nav?.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
+  });
+
+  nav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("is-open");
+      toggle?.setAttribute("aria-expanded", "false");
+    });
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 14px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo__img {
+    height: 68px;
+    width: auto;
+  }
+
+  @media (max-width: 480px) {
+    .logo__img {
+      height: 48px;
+    }
+  }
+
+  .top-row__right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .tel {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy-800);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .nav-toggle span {
+    display: block;
+    height: 2px;
+    background: var(--navy-900);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .site-nav {
+    background: var(--navy-900);
+  }
+
+  .nav-list {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 15px 22px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.78);
+    letter-spacing: -0.01em;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+
+  .nav-link:hover,
+  .nav-link.is-active {
+    color: #fff;
+    background: var(--navy-700);
+  }
+
+  @media (max-width: 860px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .site-nav {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+
+    .site-nav.is-open {
+      max-height: 400px;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      gap: 0;
+      padding-block: 8px;
+    }
+
+    .nav-link {
+      padding: 14px 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tel__text {
+      display: none;
+    }
+  }
+</style>

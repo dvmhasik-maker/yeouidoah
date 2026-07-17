@@ -1,0 +1,113 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { COLUMNS } from "../data/columns";
+
+const latestFirst = [...COLUMNS].reverse();
+---
+
+<Layout title="칼럼" description="여의도 동물병원 원장님들이 전하는 반려동물 건강이야기 칼럼">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Column</span>
+      <h1>칼럼</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">반려동물 건강이야기</span>
+        <h2>여의도 동물병원 원장님들의 건강 칼럼</h2>
+        <p>반려동물 건강관리에 도움이 되는 다양한 이야기를 전해드립니다</p>
+      </div>
+
+      <div class="column-grid">
+        {latestFirst.map((col) => (
+          <a class="column-card" href={col.file} target="_blank" rel="noopener noreferrer">
+            <div class="column-card__meta">
+              <span class="column-card__author">{col.author}</span>
+            </div>
+            <h3>{col.title}</h3>
+            <p>{col.excerpt}</p>
+            <span class="column-card__link">PDF로 보기 ↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .column-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .column-card {
+    display: flex;
+    flex-direction: column;
+    padding: 28px 26px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .column-card:hover {
+    border-color: var(--navy-700);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  .column-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+
+  .column-card__author {
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .column-card h3 {
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--navy-900);
+  }
+
+  .column-card p {
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    flex-grow: 1;
+  }
+
+  .column-card__link {
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy-800);
+  }
+
+  @media (max-width: 960px) {
+    .column-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .column-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,321 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { NAV_ITEMS, CLINIC } from "../data/nav";
+
+const highlights = [
+  {
+    title: NAV_ITEMS[0].label,
+    desc: "여의도 동물병원의 진료 철학과 의료진을 소개합니다.",
+    href: NAV_ITEMS[0].href,
+  },
+  {
+    title: NAV_ITEMS[1].label,
+    desc: "내과, 외과, 검진 등 기본 진료 항목을 안내합니다.",
+    href: NAV_ITEMS[1].href,
+  },
+  {
+    title: NAV_ITEMS[2].label,
+    desc: "여의도 동물병원만의 전문 특화 진료를 소개합니다.",
+    href: NAV_ITEMS[2].href,
+  },
+  {
+    title: NAV_ITEMS[3].label,
+    desc: "반려동물 건강관리에 도움이 되는 칼럼을 확인하세요.",
+    href: NAV_ITEMS[3].href,
+  },
+  {
+    title: NAV_ITEMS[4].label,
+    desc: "여의도 동물병원만의 검진결과서를 확인하세요.",
+    href: NAV_ITEMS[4].href,
+  },
+];
+---
+
+<Layout title="홈">
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="hero__eyebrow">Yeouido Animal Clinic</p>
+      <h1>소중한 반려동물의 평생 건강을<br />여의도 동물병원이 함께합니다</h1>
+      <p class="hero__desc">신뢰할 수 있는 진료, 세심한 케어로 반려동물과 보호자 모두가 편안한 병원</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="/treatment">진료안내 보기</a>
+        <a class="btn btn--outline btn--outline-light" href="/about">병원 소개</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Guide</span>
+        <h2>여의도 동물병원 안내</h2>
+        <p>필요한 정보를 빠르게 확인해보세요</p>
+      </div>
+
+      <div class="highlight-grid">
+        {highlights.map((item) => (
+          <a class="highlight-card" href={item.href}>
+            <span class="highlight-card__plus">+</span>
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container location">
+      <div class="section-head" style="margin-bottom: 32px;">
+        <span class="eyebrow">Location</span>
+        <h2>오시는 길</h2>
+      </div>
+
+      <div class="location__body">
+        <div class="location__map">
+          <div id="naverMap" class="location__map-canvas"></div>
+          <a
+            class="location__map-link"
+            href={CLINIC.naverPlaceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            네이버 지도 앱에서 보기 ↗
+          </a>
+        </div>
+        <ul class="location__info">
+          <li>
+            <strong>주소</strong>
+            <span>{CLINIC.address}</span>
+          </li>
+          <li>
+            <strong>전화</strong>
+            <span>{CLINIC.phone}</span>
+          </li>
+          <li>
+            <strong>진료시간</strong>
+            <span>
+              {CLINIC.hours.map((h) => (
+                <span class="hours-row">{h.label} {h.value}</span>
+              ))}
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script
+  is:inline
+  src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${CLINIC.naverMapClientId}`}
+></script>
+<script is:inline define:vars={{ lat: CLINIC.mapLat, lng: CLINIC.mapLng }}>
+  function initNaverMap() {
+    if (typeof naver === "undefined" || !naver.maps) return;
+    var center = new naver.maps.LatLng(lat, lng);
+    var map = new naver.maps.Map("naverMap", {
+      center: center,
+      zoom: 17,
+    });
+    new naver.maps.Marker({
+      position: center,
+      map: map,
+    });
+  }
+
+  if (document.readyState === "complete") {
+    initNaverMap();
+  } else {
+    window.addEventListener("load", initNaverMap);
+  }
+</script>
+
+<style>
+  .hero {
+    background: linear-gradient(160deg, var(--navy-900), var(--navy-700));
+    color: #fff;
+    text-align: center;
+    padding-block: 96px;
+  }
+
+  .hero__eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    margin-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(26px, 4.4vw, 42px);
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .hero__desc {
+    margin-top: 20px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .hero__actions {
+    margin-top: 36px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn--outline-light {
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #fff;
+  }
+
+  .btn--outline-light:hover {
+    background: #fff;
+    color: var(--navy-900);
+  }
+
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+
+  .highlight-card {
+    position: relative;
+    display: block;
+    padding: 32px 24px 28px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .highlight-card:hover {
+    border-color: var(--navy-700);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  .highlight-card__plus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--bg-soft);
+    color: var(--navy-800);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+
+  .highlight-card h3 {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--navy-900);
+    line-height: 1.4;
+  }
+
+  .highlight-card p {
+    margin-top: 10px;
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  .location__body {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .location__map {
+    position: relative;
+    min-height: 320px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg-soft);
+  }
+
+  .location__map-canvas {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+  }
+
+  .location__map-link {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: var(--shadow-md);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--navy-900);
+  }
+
+  .location__info {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .location__info li {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 14px;
+  }
+
+  .location__info strong {
+    color: var(--navy-900);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .hours-row {
+    display: block;
+    color: var(--ink-muted);
+  }
+
+  @media (max-width: 1080px) {
+    .highlight-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 960px) {
+    .highlight-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .location__body {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .hero {
+      padding-block: 64px;
+    }
+
+    .highlight-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

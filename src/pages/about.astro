@@ -1,0 +1,282 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { DOCTORS } from "../data/doctors";
+
+const stats = [
+  { value: "2001", label: "여의도 개원" },
+  { value: "25년+", label: "여의도를 지켜온 시간" },
+  { value: "No.1", label: "여의도 최장기간 운영 동물병원" },
+];
+
+const philosophy = [
+  {
+    key: "공감",
+    en: "Empathy",
+    lead: "세상에 똑같은 사람은 없듯, 모든 동물들도 모두 다른 특성을 갖고 있습니다. 여의도 동물병원은 각기 다른 생활양식과 가치관에 대해 귀 기울이고, 여러분의 반려견·반려묘에 대해 항상 애정과 관심을 갖고 특성을 파악하여 사람과 동물 모두가 행복한 가족을 이루도록 노력하겠습니다.",
+    quote: "여의도 동물병원은 보호자·반려동물과 공감하고자 합니다.",
+    points: [
+      "온 가족이 행복하도록 사람과 반려동물 사이의 매개체가 되겠습니다.",
+      "보호자의 걱정과 반려동물의 아픔을 이해하고 해결책을 위해 최선을 다합니다.",
+      "원활한 소통을 위해 서로의 입장을 이해하도록 노력합니다.",
+    ],
+  },
+  {
+    key: "정직",
+    en: "Honesty",
+    lead: "여의도 동물병원의 고객은 최고의 치료를 받을 권리가 있습니다. 저희는 동물병원 중에서 최고가 아닙니다. 욕심부리지 않고 저희의 역량 안에서 최선을 다하고 역량에 못 미치는 부분은 직접 최고의 치료를 찾아드리겠습니다. '이런 방법을 알았더라면!' 하고 후회하는 일이 발생되지 않도록, 아이를 키우면서 후회 없도록 항상 연구하고 공부하겠습니다.",
+    quote: "여의도 동물병원은 보호자·반려동물에게 정직하고자 합니다.",
+    points: [
+      "나의 반려동물이라는 마음가짐으로 진심으로 대하겠습니다.",
+      "반려동물에게 필요한 최신 수의학적 지식을 솔직·담백하게 안내하겠습니다.",
+      "정확한 진단과 고품질의 약품으로 확실한 효과를 볼 수 있도록 하겠습니다.",
+    ],
+  },
+];
+---
+
+<Layout title="여의도 동물병원 소개" description="여의도 동물병원 소개">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Introduce</span>
+      <h1>여의도 동물병원 소개</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container history">
+      <div class="section-head history__head">
+        <span class="eyebrow">Since 2001</span>
+        <h2>여의도에서 가장 오랜 시간,<br />여의도를 지켜온 동물병원</h2>
+        <p>
+          여의도 동물병원은 2001년 여의도에 처음 문을 연 이후, 지금까지 변함없이 여의도를 지켜오고 있습니다.
+          오랜 시간 동안 많은 반려동물과 보호자님을 만나며 쌓아온 경험은 여의도 동물병원만의 신뢰가 되었습니다.
+          앞으로도 한결같은 마음으로 여의도의 반려동물과 가족들의 건강을 함께 지켜나가겠습니다.
+        </p>
+      </div>
+
+      <div class="stat-row">
+        {stats.map((s) => (
+          <div class="stat-card">
+            <p class="stat-card__value">{s.value}</p>
+            <p class="stat-card__label">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Philosophy</span>
+        <h2>공감과 정직, 여의도 동물병원이 지키는 약속</h2>
+      </div>
+
+      <div class="philosophy-grid">
+        {philosophy.map((p) => (
+          <div class="philosophy-card">
+            <div class="philosophy-card__head">
+              <span class="philosophy-card__key">{p.key}</span>
+              <span class="philosophy-card__en">{p.en}</span>
+            </div>
+            <p class="philosophy-card__lead">{p.lead}</p>
+            <p class="philosophy-card__quote">{p.quote}</p>
+            <ul class="philosophy-card__points">
+              {p.points.map((pt) => (
+                <li>{pt}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Medical Team</span>
+        <h2>의료진 소개</h2>
+      </div>
+
+      <div class="doctor-grid">
+        {DOCTORS.map((d) => (
+          <div class="doctor-card">
+            <img src={d.photo} alt={`${d.name} ${d.title}`} class="doctor-card__photo" />
+            <p class="doctor-card__name">{d.name} <span>{d.title}</span></p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .history__head p {
+    max-width: 680px;
+    margin-inline: auto;
+  }
+
+  .stat-row {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 32px 20px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  .stat-card__value {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--navy-800);
+    letter-spacing: -0.02em;
+  }
+
+  .stat-card__label {
+    margin-top: 8px;
+    font-size: 13.5px;
+    color: var(--ink-muted);
+  }
+
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .philosophy-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 36px 32px;
+  }
+
+  .philosophy-card__head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .philosophy-card__key {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--navy-900);
+    letter-spacing: -0.02em;
+  }
+
+  .philosophy-card__en {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .philosophy-card__lead {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ink-muted);
+  }
+
+  .philosophy-card__quote {
+    margin-top: 20px;
+    padding: 16px 18px;
+    background: var(--bg-soft);
+    border-left: 3px solid var(--navy-700);
+    border-radius: 4px;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--navy-900);
+  }
+
+  .philosophy-card__points {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .philosophy-card__points li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  .philosophy-card__points li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .doctor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .doctor-card {
+    text-align: center;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .doctor-card__photo {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    background: #dedede;
+  }
+
+  .doctor-card__name {
+    margin-top: 20px;
+    margin-bottom: 24px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy-900);
+  }
+
+  .doctor-card__name span {
+    margin-left: 6px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  @media (max-width: 860px) {
+    .stat-row {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .philosophy-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .philosophy-card {
+      padding: 28px 22px;
+    }
+
+    .doctor-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+</style>
