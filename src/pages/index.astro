@@ -93,7 +93,7 @@ const highlights = [
               <span class="hours-row">
                 <span class="hours-row__label">{CLINIC.hours[0].label}</span>
                 <span class="hours-row__value">
-                  {CLINIC.hours[0].value}
+                  <span class="hours-row__time">{CLINIC.hours[0].value}</span>
                   <span class="hours-row__lunch">({CLINIC.hours[2].label} {CLINIC.hours[2].value})</span>
                 </span>
               </span>
@@ -421,6 +421,17 @@ const highlights = [
 
     .highlight-grid {
       grid-template-columns: 1fr;
+    }
+
+    .hours-row__value {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+
+    .hours-row__lunch {
+      margin-left: 0;
     }
   }
 </style>

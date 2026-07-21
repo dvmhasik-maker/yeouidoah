@@ -164,4 +164,26 @@ import { FEE_NOTICE, FEE_GROUPS } from "../data/fees";
     font-size: 12.5px;
     color: var(--ink-muted);
   }
+
+  @media (max-width: 640px) {
+    .fee-table {
+      min-width: 0;
+    }
+
+    .fee-table th,
+    .fee-table td {
+      padding: 12px 10px;
+      font-size: 12.5px;
+    }
+
+    .fee-table thead th {
+      font-size: 12px;
+    }
+
+    .fee-table__name {
+      white-space: normal;
+      word-break: keep-all;
+      line-height: 1.4;
+    }
+  }
 </style>

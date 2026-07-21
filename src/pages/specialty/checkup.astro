@@ -70,8 +70,8 @@ import { CHECKUP_CATEGORIES, CHECKUP_NOTES, CHECKUP_OPTIONS } from "../../data/c
             <tr>
               <th class="checkup-table__cat">구분</th>
               <th class="checkup-table__item">검사 항목</th>
-              <th>강아지</th>
-              <th>고양이</th>
+              <th class="checkup-table__mark">강아지</th>
+              <th class="checkup-table__mark">고양이</th>
             </tr>
           </thead>
           <tbody>
@@ -494,6 +494,44 @@ import { CHECKUP_CATEGORIES, CHECKUP_NOTES, CHECKUP_OPTIONS } from "../../data/c
     .report-banner__btn {
       width: 100%;
       justify-content: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .checkup-table-wrap {
+      overflow-x: visible;
+    }
+
+    .checkup-table {
+      min-width: 0;
+      table-layout: fixed;
+    }
+
+    .checkup-table th,
+    .checkup-table td {
+      padding: 8px 6px;
+      font-size: 11px;
+    }
+
+    .checkup-table thead th {
+      padding-block: 10px;
+      font-size: 10.5px;
+    }
+
+    .checkup-table__cat {
+      width: 44px;
+      font-size: 10.5px;
+    }
+
+    .checkup-table__item {
+      line-height: 1.5;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    .checkup-table__mark {
+      width: 32px;
+      font-size: 12px;
     }
   }
 </style>
