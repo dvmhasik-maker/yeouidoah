@@ -2,7 +2,13 @@
 import Layout from "../layouts/Layout.astro";
 import { COLUMNS } from "../data/columns";
 
-const latestFirst = [...COLUMNS].reverse();
+const orderedColumns = COLUMNS.map((col) => ({
+  ...col,
+  pages: Array.from(
+    { length: col.pageCount },
+    (_, i) => `/Column/${String(col.id).padStart(2, "0")}/page-${String(i + 1).padStart(2, "0")}.jpg`,
+  ),
+}));
 ---
 
 <Layout title="칼럼" description="여의도 동물병원 원장님들이 전하는 반려동물 건강이야기 칼럼">
@@ -22,14 +28,20 @@ const latestFirst = [...COLUMNS].reverse();
       </div>
 
       <div class="column-grid">
-        {latestFirst.map((col) => (
-          <a class="column-card" href={col.file} target="_blank" rel="noopener noreferrer">
+        {orderedColumns.map((col) => (
+          <a
+            class="column-card"
+            href={col.pages[0]}
+            data-lightbox={JSON.stringify(col.pages)}
+            data-lightbox-alt={col.title}
+            data-lightbox-zoom="true"
+          >
             <div class="column-card__meta">
               <span class="column-card__author">{col.author}</span>
             </div>
             <h3>{col.title}</h3>
             <p>{col.excerpt}</p>
-            <span class="column-card__link">PDF로 보기 ↗</span>
+            <span class="column-card__link">칼럼 보기 ↗</span>
           </a>
         ))}
       </div>

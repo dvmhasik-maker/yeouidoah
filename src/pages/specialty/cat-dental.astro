@@ -37,9 +37,14 @@ import {
               <h3>{c.title}</h3>
               <span class="condition-card__subtitle">{c.subtitle}</span>
               <p>{c.desc}</p>
-              {c.pdf && (
-                <a class="condition-card__pdf" href={c.pdf} target="_blank" rel="noopener noreferrer">
-                  자세히 보기 PDF ↗
+              {c.pages && (
+                <a
+                  class="condition-card__pdf"
+                  href={c.pages[0]}
+                  data-lightbox={JSON.stringify(c.pages)}
+                  data-lightbox-alt={`${c.title} 자료`}
+                >
+                  자세히 보기 ↗
                 </a>
               )}
             </div>
@@ -191,6 +196,7 @@ import {
     font-size: 12.5px;
     font-weight: 700;
     color: var(--navy-800);
+    cursor: pointer;
   }
 
   .condition-card__pdf:hover {

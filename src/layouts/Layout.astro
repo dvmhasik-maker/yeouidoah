@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Lightbox from "../components/Lightbox.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -32,5 +33,6 @@ const {
       <slot />
     </main>
     <Footer />
+    <Lightbox />
   </body>
 </html>

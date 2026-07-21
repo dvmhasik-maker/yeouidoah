@@ -4,14 +4,14 @@ export const DENTAL_CONDITIONS = [
     subtitle: "림프구성 형질세포성 치은구내염",
     desc: "치아에 붙은 세균(치태)과 바이러스에 대한 면역과민반응으로 잇몸, 목구멍 등 입안에 생기는 염증입니다. 통증이 심해지면 침을 흘리거나 입주변이 지저분해지고, 그루밍을 못해 털이 고르지 못하게 됩니다.",
     image: "/cat-dental/icon-lpgs.jpg",
-    pdf: "/cat-dental/LPGS.pdf",
+    pages: Array.from({ length: 6 }, (_, i) => `/cat-dental/lpgs/page-${String(i + 1).padStart(2, "0")}.jpg`),
   },
   {
     title: "FORL",
     subtitle: "고양이 파치세포 흡수성 병변",
     desc: "고양이에게만 발생하는 질환으로, 파치세포(치아를 파괴하는 세포)가 문제를 일으켜 치아가 녹는 질환입니다. 침을 흘리고 침에 피가 섞이거나, 머리를 흔들거나 음식을 먹기 힘들어하기도 합니다.",
     image: "/cat-dental/icon-forl.jpg",
-    pdf: "/cat-dental/FORL.pdf",
+    pages: Array.from({ length: 6 }, (_, i) => `/cat-dental/forl/page-${String(i + 1).padStart(2, "0")}.jpg`),
   },
   {
     title: "Periodontitis",

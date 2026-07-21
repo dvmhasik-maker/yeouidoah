@@ -1,7 +1,7 @@
 export const COLUMNS = [
   {
     id: 1,
-    file: "/Column/01_220605_윤하식.pdf",
+    pageCount: 2,
     date: "2022.06.05",
     author: "윤하식 원장",
     title: "강아지 건강관리 첫걸음 ‘건강검진’, 언제부터 받아야 할까?",
@@ -10,7 +10,7 @@ export const COLUMNS = [
   },
   {
     id: 2,
-    file: "/Column/02_220619_최정현.pdf",
+    pageCount: 2,
     date: "2022.06.12",
     author: "최정현 원장",
     title: "고양이 건강전선 사수, 건강검진에 달렸다!",
@@ -19,7 +19,7 @@ export const COLUMNS = [
   },
   {
     id: 3,
-    file: "/Column/03_220619_윤하식.pdf",
+    pageCount: 5,
     date: "2022.06.19",
     author: "윤하식 원장",
     title: "강아지가 밤낮없이 벅벅? 알레르기검사로 범인 찾으세요!",
@@ -28,7 +28,7 @@ export const COLUMNS = [
   },
   {
     id: 4,
-    file: "/Column/04_220626_윤하식.pdf",
+    pageCount: 2,
     date: "2022.06.26",
     author: "윤하식 원장",
     title: "노령견의 심장이 보내는 ‘SOS’ 신호 두 가지!",
@@ -37,7 +37,7 @@ export const COLUMNS = [
   },
   {
     id: 5,
-    file: "/Column/05_220703_윤하식.pdf",
+    pageCount: 2,
     date: "2022.07.03",
     author: "윤하식 원장",
     title: "반려동물 혈뇨를 부르는 대표적 원인 2가지",
@@ -46,7 +46,7 @@ export const COLUMNS = [
   },
   {
     id: 6,
-    file: "/Column/06_220710_최정현.pdf",
+    pageCount: 2,
     date: "2022.07.10",
     author: "최정현 원장",
     title: "길고양이 구조에 성공했다면? ‘건강검진’을 해야 할 때!",
@@ -55,7 +55,7 @@ export const COLUMNS = [
   },
   {
     id: 7,
-    file: "/Column/07_220717_윤하식.pdf",
+    pageCount: 2,
     date: "2022.07.17",
     author: "윤하식 원장",
     title: "많이 먹는데 오히려 살이 빠진다? 당뇨병 신호!",
@@ -64,7 +64,7 @@ export const COLUMNS = [
   },
   {
     id: 8,
-    file: "/Column/08_220724_윤하식.pdf",
+    pageCount: 2,
     date: "2022.07.24",
     author: "윤하식 원장",
     title: "반려견의 눈이 하얗게 변했다면? 원인은 백내장만이 아니다!",
@@ -73,7 +73,7 @@ export const COLUMNS = [
   },
   {
     id: 9,
-    file: "/Column/09_220731_윤하식.pdf",
+    pageCount: 2,
     date: "2022.07.31",
     author: "윤하식 원장",
     title: "중성화수술이 망설여질 때…수의사와 상담 후 결정하세요!",
@@ -82,7 +82,7 @@ export const COLUMNS = [
   },
   {
     id: 10,
-    file: "/Column/10_220807_윤하식.pdf",
+    pageCount: 2,
     date: "2022.08.07",
     author: "윤하식 원장",
     title: "강아지와 고양이도 치매에 걸리나요?",
@@ -91,7 +91,7 @@ export const COLUMNS = [
   },
   {
     id: 11,
-    file: "/Column/11_220814_윤하식.pdf",
+    pageCount: 2,
     date: "2022.08.14",
     author: "윤하식 원장",
     title: "노령기 반려동물의 건강, 이렇게 관리하세요!",
@@ -100,7 +100,7 @@ export const COLUMNS = [
   },
   {
     id: 12,
-    file: "/Column/12_220821_최정현.pdf",
+    pageCount: 4,
     date: "2022.08.21",
     author: "최정현 원장",
     title: "고양이 구내염 3…반드시 치료해야 하는 이유는?",
@@ -109,7 +109,7 @@ export const COLUMNS = [
   },
   {
     id: 13,
-    file: "/Column/13_220828_윤하식.pdf",
+    pageCount: 2,
     date: "2022.08.28",
     author: "윤하식 원장",
     title: "강아지와 고양이의 만성신부전, 어릴 때부터 예방하세요!",

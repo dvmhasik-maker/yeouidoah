@@ -2,6 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 import { CLINIC } from "../data/nav";
 
+const REPORT_PAGE_COUNT = 27;
+const REPORT_PAGES = Array.from(
+  { length: REPORT_PAGE_COUNT },
+  (_, i) => `/checkup-report/pages/page-${String(i + 1).padStart(2, "0")}.jpg`,
+);
+
 const REPORT_SECTIONS = [
   { title: "신체검사", desc: "체중, 체온, 맥박, 호흡수, 혈압 등 기본 활력징후를 확인합니다." },
   { title: "구강검사", desc: "육안검사와 Q-ray 형광촬영으로 치석·치은염 여부를 확인합니다." },
@@ -70,9 +76,15 @@ const FINDINGS = [
       </div>
 
       <div class="sample-panel">
-        <a class="sample-panel__preview" href="/checkup-report/sample-report.pdf" target="_blank" rel="noopener noreferrer">
+        <a
+          class="sample-panel__preview"
+          href={REPORT_PAGES[0]}
+          data-lightbox={JSON.stringify(REPORT_PAGES)}
+          data-lightbox-alt="강아지 건강검진 결과서"
+          data-lightbox-zoom="true"
+        >
           <img src="/checkup-report/sample-cover.jpg" alt="강아지 건강검진 결과서 표지 예시" loading="lazy" />
-          <span class="sample-panel__preview-badge">PDF · 총 27페이지</span>
+          <span class="sample-panel__preview-badge">총 {REPORT_PAGE_COUNT}페이지</span>
         </a>
 
         <div class="sample-panel__info">
@@ -99,8 +111,14 @@ const FINDINGS = [
             신체검사부터 구강, 피부, 소변·대변, 안과, 심장사상충, 혈액, 방사선, 초음파(복부·심장초음파)까지 전
             항목의 검사 사진과 수치, 담당수의사의 평가소견이 담긴 결과서입니다.
           </p>
-          <a class="btn btn--primary" href="/checkup-report/sample-report.pdf" target="_blank" rel="noopener noreferrer">
-            결과서 예시 전체 보기 (PDF)
+          <a
+            class="btn btn--primary sample-panel__cta"
+            href={REPORT_PAGES[0]}
+            data-lightbox={JSON.stringify(REPORT_PAGES)}
+            data-lightbox-alt="강아지 건강검진 결과서"
+            data-lightbox-zoom="true"
+          >
+            결과서 예시 전체 보기
           </a>
         </div>
       </div>
@@ -271,7 +289,7 @@ const FINDINGS = [
     color: var(--ink-muted);
   }
 
-  .sample-panel__info .btn {
+  .sample-panel__cta {
     margin-top: 22px;
     width: fit-content;
   }
