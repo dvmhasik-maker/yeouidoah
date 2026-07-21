@@ -1,0 +1,319 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { CLINIC } from "../../data/nav";
+import { CARDIAC_CHECKS, CARDIAC_CANDIDATES, CARDIAC_BREEDS, CARDIAC_PROGRAMS } from "../../data/cardiac";
+---
+
+<Layout title="심장검진" description="여의도 동물병원 소형견 · 고양이 심장검진 프로그램 안내">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Specialty · Program 02</span>
+      <h1>심장검진</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <a class="crumb" href="/specialty">← 특화진료 전체보기</a>
+
+      <div class="section-head">
+        <span class="eyebrow">Cardiac Checkup</span>
+        <h2>정밀 심장검진 프로그램</h2>
+        <p>소형견 · 고양이에서 흔한 심장질환을 조기에 발견하기 위한 정밀 심장검진 프로그램입니다.</p>
+      </div>
+
+      <div class="note-grid">
+        {CARDIAC_CHECKS.map((c, i) => (
+          <div class="note-card">
+            <span class="note-card__num">{String(i + 1).padStart(2, "0")}</span>
+            <h3>{c.title}</h3>
+            <p>{c.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Who Needs It</span>
+        <h2>이런 경우 검진을 권장합니다</h2>
+      </div>
+
+      <div class="candidate-grid">
+        {CARDIAC_CANDIDATES.map((c) => (
+          <div class="candidate-card">
+            <span class="candidate-card__icon">{c.emoji}</span>
+            <div class="candidate-card__body">
+              <h3>{c.title}</h3>
+              <p>{c.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="option-card option-card--wide">
+        <h3>품종별 호발 심장질환</h3>
+        <div class="option-card__breed">
+          {CARDIAC_BREEDS.map((b) => (
+            <div class="option-card__breed-item">
+              <strong>{b.species}</strong>
+              <span>{b.diseases}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Precision Analysis</span>
+        <h2>정밀 분석 프로그램</h2>
+        <p>방사선 · 초음파로 확인한 소견을 전용 분석 프로그램으로 수치화해, 눈으로 본 소견을 한 번 더 객관적으로 확인합니다.</p>
+      </div>
+
+      <div class="program-grid">
+        {CARDIAC_PROGRAMS.map((p) => (
+          <div class="program-card">
+            <a class="program-card__media" href={p.image} target="_blank" rel="noopener noreferrer">
+              <img src={p.image} alt={p.title} loading="lazy" />
+            </a>
+            <div class="program-card__body">
+              <h3>{p.title}</h3>
+              <p>{p.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="cta-box">
+        <h2>심장검진 예약 문의</h2>
+        <p>검진 프로그램은 예약제로 운영됩니다. 전화로 문의해 주세요.</p>
+        <a class="btn btn--primary" href={`tel:${CLINIC.phone}`}>{CLINIC.phone} 전화하기</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .crumb {
+    display: inline-block;
+    margin-bottom: 28px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink-muted);
+  }
+
+  .crumb:hover {
+    color: var(--navy-800);
+  }
+
+  .note-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .note-card {
+    padding: 28px 24px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .note-card__num {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .note-card h3 {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--navy-900);
+    line-height: 1.4;
+  }
+
+  .note-card p {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+  }
+
+  .candidate-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .candidate-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 26px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .candidate-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--bg-soft);
+    font-size: 26px;
+  }
+
+  .candidate-card__body h3 {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--navy-900);
+  }
+
+  .candidate-card__body p {
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-muted);
+  }
+
+  .option-card {
+    padding: 24px 20px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  .option-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy-900);
+  }
+
+  .option-card--wide {
+    margin-top: 16px;
+    padding: 28px 32px;
+  }
+
+  .option-card--wide h3 {
+    font-size: 16px;
+  }
+
+  .option-card__breed {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .option-card__breed-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 18px;
+    border-radius: 8px;
+    background: var(--bg-soft);
+  }
+
+  .option-card__breed-item strong {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .option-card__breed-item span {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--ink-muted);
+  }
+
+  .program-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .program-card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .program-card__media {
+    display: block;
+    aspect-ratio: 4 / 3;
+    background: var(--bg-soft);
+  }
+
+  .program-card__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .program-card__body {
+    padding: 22px 24px 26px;
+  }
+
+  .program-card__body h3 {
+    font-size: 16.5px;
+    font-weight: 800;
+    color: var(--navy-900);
+  }
+
+  .program-card__body p {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 56px 24px;
+    border-radius: 16px;
+    background: linear-gradient(160deg, var(--navy-900), var(--navy-700));
+    color: #fff;
+  }
+
+  .cta-box h2 {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 700;
+  }
+
+  .cta-box p {
+    margin-top: 12px;
+    font-size: 14.5px;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .cta-box .btn {
+    margin-top: 24px;
+  }
+
+  @media (max-width: 860px) {
+    .note-grid,
+    .candidate-grid,
+    .option-card__breed,
+    .program-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

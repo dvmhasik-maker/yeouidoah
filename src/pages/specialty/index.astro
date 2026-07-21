@@ -1,0 +1,147 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { CLINIC } from "../../data/nav";
+---
+
+<Layout title="특화진료" description="여의도 동물병원 강아지 건강검진, 심장검진, 고양이 치과 특화진료 안내">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Specialty</span>
+      <h1>특화진료</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Our Programs</span>
+        <h2>여의도 동물병원의 특화진료</h2>
+        <p>목적에 맞는 검진 프로그램을 선택해 자세히 확인하세요</p>
+      </div>
+
+      <div class="program-grid">
+        <a href="/specialty/checkup" class="program-card">
+          <span class="program-card__badge">01</span>
+          <h3>건강검진</h3>
+          <p>전신 상태를 폭넓게 확인하고, 여의도 동물병원만의 검진결과서로 정리해드리는 종합 건강검진 프로그램입니다.</p>
+          <span class="program-card__link">자세히 보기 →</span>
+        </a>
+        <a href="/specialty/cardiac" class="program-card">
+          <span class="program-card__badge">02</span>
+          <h3>심장검진</h3>
+          <p>소형견 · 고양이에서 흔한 심장질환을 조기에 발견하기 위한 정밀 심장검진 프로그램입니다.</p>
+          <span class="program-card__link">자세히 보기 →</span>
+        </a>
+        <a href="/specialty/cat-dental" class="program-card">
+          <span class="program-card__badge">03</span>
+          <h3>고양이 치과</h3>
+          <p>LPGS, FORL, 치주염 등 고양이 특유의 구강질환을 전문적으로 진단하고 치료합니다.</p>
+          <span class="program-card__link">자세히 보기 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="cta-box">
+        <h2>특화진료 예약 문의</h2>
+        <p>검진 프로그램은 예약제로 운영됩니다. 전화로 문의해 주세요.</p>
+        <a class="btn btn--primary" href={`tel:${CLINIC.phone}`}>{CLINIC.phone} 전화하기</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .program-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .program-card {
+    display: block;
+    padding: 32px 28px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  a.program-card:hover {
+    border-color: var(--navy-700);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  .program-card__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--navy-900);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+
+  .program-card h3 {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--navy-900);
+  }
+
+  .program-card p {
+    margin-top: 10px;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+  }
+
+  .program-card__link {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 56px 24px;
+    border-radius: 16px;
+    background: linear-gradient(160deg, var(--navy-900), var(--navy-700));
+    color: #fff;
+  }
+
+  .cta-box h2 {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 700;
+  }
+
+  .cta-box p {
+    margin-top: 12px;
+    font-size: 14.5px;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .cta-box .btn {
+    margin-top: 24px;
+  }
+
+  @media (max-width: 960px) {
+    .program-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .program-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

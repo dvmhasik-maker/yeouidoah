@@ -23,11 +23,6 @@ const highlights = [
     desc: "반려동물 건강관리에 도움이 되는 칼럼을 확인하세요.",
     href: NAV_ITEMS[3].href,
   },
-  {
-    title: NAV_ITEMS[4].label,
-    desc: "여의도 동물병원만의 검진결과서를 확인하세요.",
-    href: NAV_ITEMS[4].href,
-  },
 ];
 ---
 
@@ -94,13 +89,35 @@ const highlights = [
           </li>
           <li>
             <strong>진료시간</strong>
-            <span>
-              {CLINIC.hours.map((h) => (
-                <span class="hours-row">{h.label} {h.value}</span>
-              ))}
+            <span class="hours-list">
+              <span class="hours-row">
+                <span class="hours-row__label">{CLINIC.hours[0].label}</span>
+                <span class="hours-row__value">
+                  {CLINIC.hours[0].value}
+                  <span class="hours-row__lunch">({CLINIC.hours[2].label} {CLINIC.hours[2].value})</span>
+                </span>
+              </span>
+              <span class="hours-row">
+                <span class="hours-row__label">{CLINIC.hours[1].label}</span>
+                <span class="hours-row__value">{CLINIC.hours[1].value}</span>
+              </span>
             </span>
           </li>
         </ul>
+      </div>
+
+      <div class="parking">
+        <div class="parking__media">
+          <img src="/parking-map.png" alt="미라클빌딩 주차장 위치 안내도" loading="lazy" />
+        </div>
+        <div class="parking__info">
+          <span class="parking__badge">Parking</span>
+          <h3>주차 안내</h3>
+          <p class="parking__lead">미라클빌딩 주차장 · 무료 이용 가능</p>
+          <p class="parking__desc">
+            미라클빌딩 1층 왼편 병원 주차공간에 주차하시면 무료로 이용하실 수 있습니다.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -181,7 +198,7 @@ const highlights = [
 
   .highlight-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
   }
 
@@ -288,9 +305,97 @@ const highlights = [
     letter-spacing: 0.02em;
   }
 
+  .hours-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
   .hours-row {
-    display: block;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
     color: var(--ink-muted);
+  }
+
+  .hours-row__label {
+    flex-shrink: 0;
+    width: 3.4em;
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .hours-row__lunch {
+    margin-left: 4px;
+    color: var(--ink-muted);
+    font-size: 12.5px;
+  }
+
+  .parking {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 28px;
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 28px;
+  }
+
+  .parking__media {
+    aspect-ratio: 879 / 613;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+
+  .parking__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .parking__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .parking__badge {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .parking__info h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--navy-900);
+  }
+
+  .parking__lead {
+    margin-top: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy-800);
+  }
+
+  .parking__desc {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+  }
+
+  @media (max-width: 960px) {
+    .parking {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 1080px) {

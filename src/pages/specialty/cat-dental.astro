@@ -1,0 +1,357 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { CLINIC } from "../../data/nav";
+import {
+  DENTAL_CONDITIONS,
+  DENTAL_THERAPIES,
+  DENTAL_THERAPY_ILLUSTRATION,
+  DENTAL_RECOVERY,
+} from "../../data/dental";
+---
+
+<Layout title="고양이 치과" description="여의도 동물병원 고양이 치과 - LPGS, FORL, 치주염 진단과 치료">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Specialty · Program 03</span>
+      <h1>고양이 치과</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <a class="crumb" href="/specialty">← 특화진료 전체보기</a>
+
+      <div class="section-head">
+        <span class="eyebrow">Feline Dental</span>
+        <h2>고양이에게 흔한 구강질환</h2>
+        <p>고양이는 사람이나 강아지와 다른 특유의 구강질환이 잘 생기는 만큼, 정확한 감별과 전문적인 치료가 필요합니다.</p>
+      </div>
+
+      <div class="condition-grid">
+        {DENTAL_CONDITIONS.map((c) => (
+          <div class="condition-card">
+            <div class="condition-card__media">
+              <img src={c.image} alt={`${c.title} 질환 진행 illustration`} loading="lazy" />
+            </div>
+            <div class="condition-card__body">
+              <h3>{c.title}</h3>
+              <span class="condition-card__subtitle">{c.subtitle}</span>
+              <p>{c.desc}</p>
+              {c.pdf && (
+                <a class="condition-card__pdf" href={c.pdf} target="_blank" rel="noopener noreferrer">
+                  자세히 보기 PDF ↗
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Therapy Method</span>
+        <h2>치료방법</h2>
+        <p>원인에 맞춰 스케일링, 약물치료, 발치 등 적절한 치료를 진행합니다.</p>
+      </div>
+
+      <div class="therapy-illustration">
+        <img src={DENTAL_THERAPY_ILLUSTRATION} alt="원인별 치료방법 illustration" loading="lazy" />
+      </div>
+
+      <div class="therapy-grid">
+        {DENTAL_THERAPIES.map((t) => (
+          <div class="therapy-card">
+            <span class="therapy-card__icon">{t.emoji}</span>
+            <div class="therapy-card__body">
+              <span class="therapy-card__cause">{t.cause}</span>
+              <h3>{t.treatment}</h3>
+              <p>{t.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Treatment Case</span>
+        <h2>치료사례</h2>
+        <p>여의도 동물병원에서 실제로 진행한 고양이 치과 치료 전후 사례입니다.</p>
+      </div>
+
+      <div class="case-figure">
+        <img src="/cat-dental/case-photos-nobg.jpg" alt="고양이 치과 치료 전후 사례" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Aftercare</span>
+        <h2>발치 후 관리</h2>
+        <p>발치 · 구강 수술 이후 시기별로 이렇게 관리해주세요.</p>
+      </div>
+
+      <div class="recovery-grid">
+        {DENTAL_RECOVERY.map((r) => (
+          <div class="recovery-card">
+            <span class="recovery-card__period">{r.period}</span>
+            <ul>
+              {r.points.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>고양이 치과 예약 문의</h2>
+        <p>진료 프로그램은 예약제로 운영됩니다. 전화로 문의해 주세요.</p>
+        <a class="btn btn--primary" href={`tel:${CLINIC.phone}`}>{CLINIC.phone} 전화하기</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .crumb {
+    display: inline-block;
+    margin-bottom: 28px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink-muted);
+  }
+
+  .crumb:hover {
+    color: var(--navy-800);
+  }
+
+  .condition-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .condition-card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .condition-card__media {
+    background: #d7ecf2;
+  }
+
+  .condition-card__media img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .condition-card__body {
+    padding: 24px 24px 28px;
+  }
+
+  .condition-card h3 {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--navy-900);
+  }
+
+  .condition-card__subtitle {
+    display: block;
+    margin-top: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .condition-card p {
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+  }
+
+  .condition-card__pdf {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--navy-800);
+  }
+
+  .condition-card__pdf:hover {
+    color: var(--navy-900);
+    text-decoration: underline;
+  }
+
+  .therapy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .therapy-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 26px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .therapy-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--bg-soft);
+    font-size: 26px;
+  }
+
+  .therapy-card__cause {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+  }
+
+  .therapy-card__body h3 {
+    margin-top: 4px;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--navy-900);
+  }
+
+  .therapy-card__body p {
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-muted);
+  }
+
+  .therapy-illustration {
+    max-width: 320px;
+    margin: 0 auto 28px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #d7ecf2;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .therapy-illustration img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .recovery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .recovery-card {
+    padding: 24px 26px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid var(--line);
+  }
+
+  .recovery-card__period {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 12.5px;
+    font-weight: 700;
+  }
+
+  .recovery-card ul {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .recovery-card li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--ink-muted);
+  }
+
+  .recovery-card li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .case-figure {
+    max-width: 320px;
+    margin-inline: auto;
+    padding: 24px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-md);
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 56px 24px;
+    border-radius: 16px;
+    background: linear-gradient(160deg, var(--navy-900), var(--navy-700));
+    color: #fff;
+  }
+
+  .cta-box h2 {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 700;
+  }
+
+  .cta-box p {
+    margin-top: 12px;
+    font-size: 14.5px;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .cta-box .btn {
+    margin-top: 24px;
+  }
+
+  @media (max-width: 860px) {
+    .condition-grid,
+    .therapy-grid,
+    .recovery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,167 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { FEE_NOTICE, FEE_GROUPS } from "../data/fees";
+---
+
+<Layout title="진료비용 안내" description="여의도 동물병원 주요 비급여 진료비용 게시">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Fees</span>
+      <h1>진료비용 안내</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="fee-legal">{FEE_NOTICE.legalBasis}</p>
+
+      <div class="fee-groups">
+        {FEE_GROUPS.map((group) => (
+          <div class="fee-block">
+            <h2 class="fee-block__title">{group.category}</h2>
+            <div class="fee-table-wrap">
+              <table class="fee-table">
+                <thead>
+                  <tr>
+                    <th class="fee-table__name">항목</th>
+                    <th>체중</th>
+                    <th>비용</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {group.rows.map((row, ri) => {
+                    const isLastRow = ri === group.rows.length - 1;
+                    return row.tiers.map((tier, ti) => {
+                      const noBorder = isLastRow && ti === row.tiers.length - 1;
+                      return (
+                        <tr>
+                          {ti === 0 && (
+                            <th
+                              class:list={["fee-table__name", { "no-border": isLastRow }]}
+                              rowspan={row.tiers.length}
+                            >
+                              {row.name}
+                            </th>
+                          )}
+                          <td class:list={["fee-table__tier", { "no-border": noBorder }]}>
+                            {tier.label ?? "–"}
+                          </td>
+                          <td class:list={["fee-table__price", { "no-border": noBorder }]}>
+                            {tier.price}
+                          </td>
+                        </tr>
+                      );
+                    });
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="fee-updated">상기 비용은 부가세 포함 기준이며, 개체의 상태에 따라 변동될 수 있습니다.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .fee-legal {
+    max-width: 720px;
+    margin: 0 auto 40px;
+    padding: 20px 24px;
+    background: var(--bg-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--ink-muted);
+    text-align: center;
+  }
+
+  .fee-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .fee-block__title {
+    margin-bottom: 14px;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--navy-900);
+  }
+
+  .fee-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .fee-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    min-width: 420px;
+  }
+
+  .fee-table th:nth-child(1) {
+    width: 50%;
+  }
+
+  .fee-table th:nth-child(2) {
+    width: 22%;
+  }
+
+  .fee-table th:nth-child(3) {
+    width: 28%;
+  }
+
+  .fee-table th,
+  .fee-table td {
+    padding: 16px 20px;
+    text-align: left;
+    font-size: 14.5px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .fee-table thead th {
+    background: var(--navy-900);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13.5px;
+  }
+
+  .fee-table thead .fee-table__name {
+    color: #fff;
+  }
+
+  .fee-table .no-border {
+    border-bottom: none;
+  }
+
+  .fee-table__name {
+    font-weight: 700;
+    color: var(--navy-900);
+    white-space: nowrap;
+  }
+
+  .fee-table__tier {
+    color: var(--ink-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .fee-table__price {
+    font-weight: 700;
+    color: var(--navy-800);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .fee-updated {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--ink-muted);
+  }
+</style>
