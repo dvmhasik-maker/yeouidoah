@@ -46,7 +46,7 @@ import { DEPARTMENTS } from "../data/departments";
         <table class="timetable">
           <thead>
             <tr>
-              <th class="timetable__name">원장</th>
+              <th class="timetable__name">수의사</th>
               {DAYS.map((d) => <th>{d}</th>)}
             </tr>
           </thead>
@@ -369,10 +369,6 @@ import { DEPARTMENTS } from "../data/departments";
   }
 
   @media (max-width: 640px) {
-    .timetable-wrap {
-      overflow-x: visible;
-    }
-
     .timetable {
       min-width: 0;
       table-layout: fixed;
