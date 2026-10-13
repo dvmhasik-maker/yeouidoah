@@ -129,7 +129,7 @@ const highlights = [
 
 <script
   is:inline
-  src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${CLINIC.naverMapClientId}`}
+  src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${CLINIC.naverMapKeyId}`}
 ></script>
 <script is:inline define:vars={{ lat: CLINIC.mapLat, lng: CLINIC.mapLng }}>
   function initNaverMap() {

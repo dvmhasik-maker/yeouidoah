@@ -22,7 +22,7 @@ export const CLINIC = {
   mapLat: 37.5187504,
   mapLng: 126.9335477,
   naverPlaceUrl: "https://map.naver.com/p/entry/place/34490360",
-  naverMapClientId: "1ezvm4plne",
+  naverMapKeyId: "kexma7p5n2", // NCP Maps(신규) 콘솔에서 발급한 Client ID
   kakaoChannelUrl: "https://pf.kakao.com/_FLhdn",
   kakaoChatUrl: "https://pf.kakao.com/_FLhdn/chat",
   hours: [
